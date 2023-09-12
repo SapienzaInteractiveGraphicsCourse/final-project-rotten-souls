@@ -1,0 +1,41 @@
+Exporter version: 3.3.1, Blender version: 3.6.2
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  STD
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  no
+		Texture directory   :  C:\Users\Asus\Desktop\Progetto Interactive Graphics\assets\Zelda_Chest\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of skeleton:  Armatura, id:  0
+		processing begun of bone:  base, index:  0
+		processing begun of bone:  opening, index:  1
+	processing begun of mesh:  Big Treasure Chest
+		processing begun of material:  front
+		processing begun of material:  wood
+			processing texture front
+			processing texture wood
+		processing begun of multimaterial:  Zelda_chest.Multimaterial#0
+		num positions      :  112
+		num normals        :  112
+		num tangents       :  0
+		num uvs            :  224
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  46
+		Skeleton stats:  
+			Total Influencers:  156
+			Avg # of influencers per vertex:  1.3929
+			Highest # of influencers observed:  2, num vertices with this:  44
+			exported as 2 influencers
+			num skeletonWeights and skeletonIndices:  448
+========= Writing of JSON file started =========
+	writing mesh:  Big Treasure Chest
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 0.024 secs

@@ -1,0 +1,97 @@
+Exporter version: 3.3.1, Blender version: 3.6.2
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  STD
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  yes
+		Texture directory   :  C:\Users\Asus\Desktop\Progetto Interactive Graphics\assets\Silver_Knight_fin2\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of skeleton:  SK_rig, id:  0
+		processing begun of bone:  main, index:  0
+		processing begun of bone:  chest, index:  1
+		processing begun of bone:  neck, index:  2
+		processing begun of bone:  head, index:  3
+		processing begun of bone:  shoulder L, index:  4
+		processing begun of bone:  upper_arm L, index:  5
+		processing begun of bone:  lower_arm L, index:  6
+		processing begun of bone:  palm L, index:  7
+		processing begun of bone:  fingers L, index:  8
+		processing begun of bone:  thumb L, index:  9
+		processing begun of bone:  upper_leg L, index:  10
+		processing begun of bone:  lower_leg L, index:  11
+		processing begun of bone:  foot L, index:  12
+		processing begun of bone:  shoulder R, index:  13
+		processing begun of bone:  upper_arm R, index:  14
+		processing begun of bone:  lower_arm R, index:  15
+		processing begun of bone:  palm R, index:  16
+		processing begun of bone:  fingers R, index:  17
+		processing begun of bone:  thumb R, index:  18
+		processing begun of bone:  sword, index:  19
+		processing begun of bone:  upper_leg R, index:  20
+		processing begun of bone:  lower_leg R, index:  21
+		processing begun of bone:  foot R, index:  22
+		processing begun of bone:  cape, index:  23
+	processing begun of mesh:  mesh1
+		processing begun of material:  c1200_1
+		processing begun of material:  c1200_0
+		processing begun of material:  c1200_2
+		processing begun of material:  c1200_3
+		processing begun of material:  c1200_4
+		processing begun of material:  c1200_5
+		processing begun of material:  c1200_6
+		processing begun of material:  c1200_7
+		processing begun of material:  c1200_8
+			processing texture c2410_BD_A_9560_1_n
+			processing texture c2410_BD_A_9560_1
+			processing texture c2410_BD_A_9560_1_s
+			processing texture c2410_AM_A_9560_n
+			processing texture c2410_AM_A_9560
+			processing texture c2410_AM_A_9560_s
+			processing texture c2410_BD_A_9560_2_n
+			processing texture c2410_BD_A_9560_2
+			processing texture c2410_BD_A_9560_2_s
+			processing texture c2410_BD_A_9560_1_n
+			processing texture c2410_BD_A_9560_1
+			processing texture c2410_BD_A_9560_1_s
+			processing texture c2410_BD_A_9560_1_n
+			processing texture c2410_BD_A_9560_1
+			processing texture c2410_BD_A_9560_1_s
+			processing texture c2410_HD_A_9560_n
+			processing texture c2410_HD_A_9560
+			processing texture c2410_HD_A_9560_s
+			processing texture c2410_LG_M_9560_n
+			processing texture c2410_LG_M_9560
+			processing texture c2410_LG_M_9560_s
+			processing texture c2410_LG_M_9560_n
+			processing texture c2410_LG_M_9560
+			processing texture c2410_LG_M_9560_s
+			processing texture c2410_WP_A_0212_n
+			processing texture c2410_WP_A_0212
+			processing texture c2410_WP_A_0212_s
+		processing begun of multimaterial:  c2410.Multimaterial#0
+		Custom split normals with tangents being used
+		num positions      :  9205
+		num normals        :  9205
+		num tangents       :  36820
+		num uvs            :  18410
+		num uvs2           :  0
+		num colors         :  36820
+		num triangles      :  8466
+		Skeleton stats:  
+			Total Influencers:  14637
+			Avg # of influencers per vertex:  1.5901
+			Highest # of influencers observed:  4, num vertices with this:  38
+			exported as 4 influencers
+			num skeletonWeights and skeletonIndices:  36820
+		WARNING: # of 0 area faces found:  4
+========= Writing of JSON file started =========
+	writing mesh:  mesh1
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 2.08 secs
