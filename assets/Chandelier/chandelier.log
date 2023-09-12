@@ -1,0 +1,61 @@
+Exporter version: 3.3.1, Blender version: 3.6.2
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  STD
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  no
+		Texture directory   :  C:\Users\Asus\Desktop\Progetto Interactive Graphics\assets\Chandelier\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of mesh:  mesh3.001
+		processing begun of material:  AM_A_1000_2.001
+		processing begun of material:  AM_A_1000_0
+		processing begun of material:  AM_A_1000_1
+		processing begun of material:  AM_A_1000_2
+		processing begun of material:  AM_A_1000_0.001
+		processing begun of material:  AM_A_1000_1.001
+		processing begun of material:  AM_A_1000_0.002
+		processing begun of material:  AM_A_1000_0.003
+			processing texture m15_obj_chain_02_n
+			processing texture m15_obj_chain_02
+			processing texture m15_obj_chain_02_s
+			processing texture o5800_n
+			processing texture o5800
+			processing texture o5800_s
+			processing texture o5800_n
+			processing texture o5800
+			processing texture o5800_s
+			processing texture m15_obj_chain_02_n
+			processing texture m15_obj_chain_02
+			processing texture m15_obj_chain_02_s
+			processing texture o5800_n
+			processing texture o5800
+			processing texture o5800_s
+			processing texture o5800_n
+			processing texture o5800
+			processing texture o5800_s
+			processing texture o5800_n
+			processing texture o5800
+			processing texture o5800_s
+			processing texture o5800_n
+			processing texture o5800
+			processing texture o5800_s
+		processing begun of multimaterial:  chandelier.Multimaterial#0
+		Custom split normals with tangents being used
+		num positions      :  21496
+		num normals        :  21496
+		num tangents       :  85984
+		num uvs            :  42992
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  19120
+========= Writing of JSON file started =========
+	writing mesh:  mesh3.001
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 1.697 secs

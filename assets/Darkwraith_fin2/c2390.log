@@ -1,0 +1,77 @@
+Exporter version: 3.3.1, Blender version: 3.6.2
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  STD
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  yes
+		Texture directory   :  C:\Users\Asus\Desktop\Progetto Interactive Graphics\assets\Darkwraith_fin2\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of skeleton:  DW_rig, id:  0
+		processing begun of bone:  main, index:  0
+		processing begun of bone:  chest, index:  1
+		processing begun of bone:  shoulder L, index:  2
+		processing begun of bone:  upper_arm L, index:  3
+		processing begun of bone:  lower_arm L, index:  4
+		processing begun of bone:  palm L, index:  5
+		processing begun of bone:  fingers L, index:  6
+		processing begun of bone:  thumb L, index:  7
+		processing begun of bone:  neck, index:  8
+		processing begun of bone:  head, index:  9
+		processing begun of bone:  upper_leg L, index:  10
+		processing begun of bone:  lower_leg L, index:  11
+		processing begun of bone:  foot L, index:  12
+		processing begun of bone:  shoulder R, index:  13
+		processing begun of bone:  upper_arm R, index:  14
+		processing begun of bone:  lower_arm R, index:  15
+		processing begun of bone:  palm R, index:  16
+		processing begun of bone:  fingers R, index:  17
+		processing begun of bone:  sword, index:  18
+		processing begun of bone:  thumb R, index:  19
+		processing begun of bone:  upper_leg R, index:  20
+		processing begun of bone:  lower_leg R, index:  21
+		processing begun of bone:  foot R, index:  22
+		processing begun of bone:  sheath, index:  23
+	processing begun of mesh:  mesh0
+		processing begun of material:  c1200_0
+		processing begun of material:  c1200_3
+		processing begun of material:  c1200_1
+		processing begun of material:  c1200_2
+			processing texture c2390_WP_A_0260_n
+			processing texture c2390_WP_A_0260
+			processing texture c2390_WP_A_0260_s
+			processing texture c2390_n
+			processing texture c2390
+			processing texture c2390_s
+			processing texture c2390_n
+			processing texture c2390
+			processing texture c2390_s
+			processing texture c2390_n
+			processing texture c2390
+			processing texture c2390_s
+		processing begun of multimaterial:  c2390.Multimaterial#0
+		Custom split normals with tangents being used
+		num positions      :  8813
+		num normals        :  8813
+		num tangents       :  35252
+		num uvs            :  17626
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  8346
+		Skeleton stats:  
+			Total Influencers:  18435
+			Avg # of influencers per vertex:  2.0918
+			Highest # of influencers observed:  5, num vertices with this:  96
+			exported as 5 influencers
+			num skeletonWeights and skeletonIndices:  70504
+		WARNING: # of 0 area faces found:  2
+========= Writing of JSON file started =========
+	writing mesh:  mesh0
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 2.079 secs

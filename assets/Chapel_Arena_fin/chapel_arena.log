@@ -1,0 +1,109 @@
+Exporter version: 3.3.1, Blender version: 3.6.2
+========= Conversion from Blender to Babylon.js =========
+	Scene settings used :
+		Inline textures     :  false
+		Material Type       :  STD
+		Positions Precision :  4
+		Normals Precision   :  3
+		UVs Precision       :  3
+		Vert Color Precision:  3
+		Mat Weight Precision:  2
+		Keep Z-up r-handed  :  yes
+		Texture directory   :  C:\Users\Asus\Desktop\Progetto Interactive Graphics\assets\Chapel_fin\
+	Python World class constructor completed
+	WARNING: No active camera has been assigned, or is not in a currently enabled collection
+	processing begun of mesh:  0004_mesh3
+		processing begun of material:  AM_A_1000_3
+		processing begun of material:  AM_A_1000_0
+		processing begun of material:  AM_A_1000_1
+		processing begun of material:  AM_A_1000_2
+		processing begun of material:  AM_A_1000_4
+		processing begun of material:  AM_A_1000_5
+		processing begun of material:  AM_A_1000_6
+		processing begun of material:  AM_A_1000_7
+		processing begun of material:  AM_A_1000_8
+		processing begun of material:  AM_A_1000_9
+		processing begun of material:  AM_A_1000_10
+		processing begun of material:  AM_A_1000_11
+		processing begun of material:  AM_A_1000_12
+		processing begun of material:  AM_A_1000_13
+		processing begun of material:  AM_A_1000_14
+		processing begun of material:  AM_A_1000_15
+		processing begun of material:  AM_A_1000_16
+		processing begun of material:  AM_A_1000_17
+		processing begun of material:  AM_A_1000_18
+		processing begun of material:  AM_A_1000_19
+		processing begun of material:  AM_A_1000_20
+		processing begun of material:  AM_A_1000_21
+		processing begun of material:  AM_A_1000_22
+		processing begun of material:  AM_A_1000_23
+		processing begun of material:  AM_A_1000_24
+		processing begun of material:  AM_A_1000_25
+		processing begun of material:  AM_A_1000_26
+			processing texture m15_floor_stone_07
+			processing texture m15_floor_stone_07_s
+			processing texture m15_wall_white_01
+			processing texture m15_queen_floor_05
+			processing texture m15_queen_floor_05_s
+			processing texture m15_floor_stone_08
+			processing texture m15_floor_stone_08_s
+			processing texture m15_wood_01
+			processing texture m15_queen_relief_01_n
+			processing texture m15_queen_relief_01
+			processing texture m15_queen_relief_03
+			processing texture m15_queen_floor_01
+			processing texture m15_queen_floor_01_s
+			processing texture m15_chapel_wall_02
+			processing texture m15_wall_white_ditch2_n
+			processing texture m15_wall_white_ditch2
+			processing texture m15_wall_relief_03_n
+			processing texture m15_wall_relief_03
+			processing texture m15_wall_relief_08_n
+			processing texture m15_wall_relief_08
+			processing texture m15_stair_2_01
+			processing texture m15_stair_2_01_s
+			processing texture m15_queen_floor_06_n
+			processing texture m15_queen_floor_06
+			processing texture m15_queen_floor_06_s
+			processing texture m15_queen_relief_04_n
+			processing texture m15_queen_relief_04
+			processing texture m15_queen_relief_04_s
+			processing texture m15_queen_relief_05_n
+			processing texture m15_queen_relief_05
+			processing texture m15_queen_relief_06_n
+			processing texture m15_queen_relief_06
+			processing texture m15_queen_relief_07_n
+			processing texture m15_queen_relief_07
+			processing texture m15_queen_relief_08_n
+			processing texture m15_queen_relief_08
+			processing texture m15_floor_stone_07
+			processing texture m15_floor_stone_07_s
+			processing texture m15_wall_relief_05_n
+			processing texture m15_wall_relief_05
+			processing texture m15_wall_white_ditch2_n
+			processing texture m15_wall_white_ditch2
+			processing texture m15_wall_white_ditch3_n
+			processing texture m15_wall_white_ditch3
+			processing texture m15_chapel_relief_02
+			processing texture m15_chapel_relief_a_n
+			processing texture m15_chapel_relief_a
+			processing texture m15_chapel_glass_01_n
+			processing texture m15_chapel_glass_01
+			processing texture m15_chapel_glass_01_s
+			processing texture m15_chapel_glass_01_n
+			processing texture m15_chapel_glass_01
+			processing texture m15_chapel_glass_01_s
+		processing begun of multimaterial:  chapel_arena.Multimaterial#0
+		Custom split normals with tangents being used
+		num positions      :  108263
+		num normals        :  108263
+		num tangents       :  433052
+		num uvs            :  216526
+		num uvs2           :  0
+		num colors         :  0
+		num triangles      :  91584
+========= Writing of JSON file started =========
+	writing mesh:  0004_mesh3
+========= Writing of JSON file completed =========
+========= end of processing =========
+elapsed time:  0 min, 8.3262 secs
