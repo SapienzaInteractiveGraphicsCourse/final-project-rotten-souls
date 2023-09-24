@@ -1,10 +1,9 @@
 const canvas = document.getElementById("renderCanvas"); // Get the canvas element
-window.addEventListener('load', function(e) {   //Focus the canvas when the page is loaded (otherwise you had to click at least once to focus it and play the game)
+window.addEventListener('load', function(e) {   //Focus the canvas when the page is loaded (otherwise you had to click once to focus it and play the game)
     canvas.focus();
 });
 const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
 var frameRate = engine.getFps();    //To keep the application frame rate independent
-var lowSpecCounter = Math.round(frameRate*10);  //if performance is low, I wait about 10 seconds to see if situation stabilizes
 
 //Utility function to measure the distance between the boss and the player
 function cartesianDistance(a, b) {
@@ -15,6 +14,7 @@ function cartesianDistance(a, b) {
 }
 
 const createScene = async function () {
+// Creates a basic Babylon Scene object
     const scene = new BABYLON.Scene(engine);
 
     //**CAMERA**
@@ -24,7 +24,6 @@ const createScene = async function () {
     //debugCamera.wheelPrecision = 100;
     debugCamera.minZ = 0.01;
     debugCamera.inertia = 0.5;
-
     const camera = new BABYLON.FollowCamera("followCam", new BABYLON.Vector3(20.0, 3.0, 0.0), scene);
     camera.radius = 6.2;
     camera.heightOffset = 1.2;
@@ -34,12 +33,12 @@ const createScene = async function () {
     //camera.attachControl(canvas, true);
     scene.activeCamera = camera;
 
-    //**FOG EFFECT (subtle)**
+    //**NO FOG EFFECT IN LOW SPEC MODE**
     //scene.clearColor = new BABYLON.Color3(0.5, 0.8, 0.5);
-    scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
+    /*scene.ambientColor = new BABYLON.Color3(0.3, 0.3, 0.3);
     scene.fogMode = BABYLON.Scene.FOGMODE_EXP2;
     scene.fogDensity = 0.006;
-    scene.fogColor = new BABYLON.Color3(0.45, 0.4, 0.35);
+    scene.fogColor = new BABYLON.Color3(0.45, 0.4, 0.35);*/
 
     //**LIGHTS SETTING**
     const externalLight = new BABYLON.HemisphericLight("externalLight", new BABYLON.Vector3(0, 1, 0));
@@ -63,11 +62,8 @@ const createScene = async function () {
     const groundMat = new BABYLON.StandardMaterial("groundMat");
     //groundMat.diffuseColor = new BABYLON.Color3(0.9, 0.9, 0.9);
     groundMat.diffuseTexture = new BABYLON.Texture("/assets/Chapel_Arena_fin/m15_wall_white_01.png", scene);
-    groundMat.bumpTexture = new BABYLON.Texture("/assets/bricks_n_map.png", scene);
     groundMat.diffuseTexture.uScale = 20.0;     //to make the texture replicate instead of stretching ("tiling")
     groundMat.diffuseTexture.vScale = 16.0;
-    groundMat.bumpTexture.uScale = 20.0;
-    groundMat.bumpTexture.vScale = 16.0;
 
     const ground = BABYLON.MeshBuilder.CreateGround("ground", {width:120, height:100});
     ground.material = groundMat;
@@ -76,7 +72,7 @@ const createScene = async function () {
     const skybox = BABYLON.MeshBuilder.CreateBox("skybox", {size:200}, scene);
     const skyboxMaterial = new BABYLON.StandardMaterial("skyboxMaterial", scene);
     skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("/assets/Skybox/skybox", scene);   //it reads "textures" directory and then search for files with prefix "skybox" and suffix "_nx", "_ny", etc.
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("/assets/Skybox/skybox", scene);   //LEGGE CARTELLA "textures" E POI CERCA FILE CON INIZIO NOME "skybox" E DESINENZA "_nx", "_ny", ecc.
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -92,7 +88,7 @@ const createScene = async function () {
     const result = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Darkwraith_fin2/", "c2390.babylon", scene);
     model = result.meshes[0];
     skeleton = result.skeletons[0];
-    model.receiveShadows = true;
+    //model.receiveShadows = true;  //NO SHADOWS IN LOW SPEC MODE
     //model.checkCollisions = true;
     model.alwaysSelectAsActiveMesh = true;
     for (let i=0; i<model.material.subMaterials.length; i++) 
@@ -115,17 +111,17 @@ const createScene = async function () {
     const result2 = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Silver_Knight_fin2/", "c2410.babylon", scene);
     model2 = result2.meshes[0];
     skeleton2 = result2.skeletons[0];
-    model2.receiveShadows = true;
+    //model2.receiveShadows = true; //NO SHADOWS IN LOW SPEC MODE
     //model2.checkCollisions = true;
-    model2.alwaysSelectAsActiveMesh = true;     //very important, otherwise the second model disappears or glitches out from certain camera angles
-    for (let i=0; i<model2.material.subMaterials.length; i++) 
-        model2.material.subMaterials[i].maxSimultaneousLights = 6;
 
     skeleton2.bones[skeleton2.getBoneIndexByName("main")].position = new BABYLON.Vector3(-7.0, 0.0, 0.0);
 	skeleton2.bones[skeleton2.getBoneIndexByName("main")].rotation = new BABYLON.Vector3(0.0, Math.PI/2, 0.0);
     skeleton2.bones[skeleton2.getBoneIndexByName("main")].scaling.x *= -1.0;    //to solve the mirrored imported model (the angles will be computed as opposite)
     skeleton2.bones[skeleton2.getBoneIndexByName("cape")].rotation = new BABYLON.Vector3(-11*Math.PI/12, 0.0, 0.0);     //only "cape" is modified before, because it is animated not from the default t-pose position/rotation
     console.log(skeleton2.bones);
+    model2.alwaysSelectAsActiveMesh = true;     //very important, otherwise the second model disappears or glitches out from certain camera angles
+    for (let i=0; i<model2.material.subMaterials.length; i++) 
+        model2.material.subMaterials[i].maxSimultaneousLights = 6;
 
     //Cathedral
     var cathedral;
@@ -133,7 +129,7 @@ const createScene = async function () {
     cathedral = result3.meshes[0];
     cathedral.position = new BABYLON.Vector3(0.0, 7.5, 0.0);
     cathedral.rotation = new BABYLON.Vector3(0.0, Math.PI, 0.0);
-    cathedral.receiveShadows = true;
+    //cathedral.receiveShadows = true;  //NO SHADOWS IN LOW SPEC MODE
     for (let i=0; i<cathedral.material.subMaterials.length; i++) 
         cathedral.material.subMaterials[i].maxSimultaneousLights = 6;
 
@@ -162,7 +158,7 @@ const createScene = async function () {
     const tempRot = chestSkeleton.bones[chestSkeleton.getBoneIndexByName("base")].rotation;
     chestSkeleton.bones[chestSkeleton.getBoneIndexByName("base")].rotation = new BABYLON.Vector3(tempRot.x, tempRot.y-Math.PI/2, tempRot.z);
     zeldaChest.alwaysSelectAsActiveMesh = true;
-    zeldaChest.receiveShadows = true;
+    //zeldaChest.receiveShadows = true;     //NO SHADOWS IN LOW SPEC MODE
     zeldaChest.material.maxSimultaneousLights = 6;
     for (let i=0; i<zeldaChest.material.subMaterials.length; i++) 
         zeldaChest.material.subMaterials[i].maxSimultaneousLights = 6;
@@ -179,7 +175,7 @@ const createScene = async function () {
     for (let i=0; i<moonlightSword.material.subMaterials.length; i++) 
         moonlightSword.material.subMaterials[i].maxSimultaneousLights = 6;
     moonlightSword.alwaysSelectAsActiveMesh = true;
-    moonlightSword.receiveShadows = true;
+    //moonlightSword.receiveShadows = true;     //NO SHADOWS IN LOW SPEC MODE
     moonlightSword.isVisible = false;
 
     //(Moonlight sword luminosity effect)
@@ -199,7 +195,8 @@ const createScene = async function () {
     moonlightLight2.setEnabled(false);
 
     //Small particle system effect for the chest and moonlight sword
-    const moonlightSparkles = new BABYLON.ParticleSystem("moonlightSparkles", 1000, scene);
+    //NO PARTICLE SYSTEMS IN LOW SPEC MODE
+    /*const moonlightSparkles = new BABYLON.ParticleSystem("moonlightSparkles", 1000, scene);
     moonlightSparkles.particleTexture = new BABYLON.Texture("/assets/flare_moonlight_2.jpg", scene);
     moonlightSparkles.emitter = new BABYLON.Vector3(-10.0, 0.0, 0.0);
     moonlightSparkles.minEmitBox = new BABYLON.Vector3(-0.8, 0, -0.8);
@@ -217,7 +214,7 @@ const createScene = async function () {
     moonlightSparkles.minEmitPower = 0.5;
     moonlightSparkles.maxEmitPower = 0.8;
     moonlightSparkles.updateSpeed = 0.01;
-    moonlightSparkles.gravity = new BABYLON.Vector3(0, -4.405, 0);
+    moonlightSparkles.gravity = new BABYLON.Vector3(0, -4.405, 0);*/
 
     //Easter egg objects
     var chestFFX;
@@ -225,7 +222,7 @@ const createScene = async function () {
     chestFFX = result7.meshes[0];
     chestFFX.position = new BABYLON.Vector3(-18.5, 0.8, 1.0);
     chestFFX.rotation = new BABYLON.Vector3(0.0, -Math.PI/2, 0.0);
-    chestFFX.receiveShadows = true;
+    //chestFFX.receiveShadows = true;   //NO SHADOWS IN LOW SPEC MODE
     chestFFX.material.maxSimultaneousLights = 6;
 
     var royalHelm;
@@ -234,15 +231,16 @@ const createScene = async function () {
     royalHelm.position = new BABYLON.Vector3(-18.5, 0.8, -1.0);
     royalHelm.rotation = new BABYLON.Vector3(0.0, -2*Math.PI/3, 0.0);
     royalHelm.scaling = new BABYLON.Vector3(1.2, 1.2, 1.2);
-    royalHelm.receiveShadows = true;
+    //royalHelm.receiveShadows = true;  //NO SHADOWS IN LOW SPEC MODE
     for (let i=0; i<royalHelm.material.subMaterials.length; i++) 
         royalHelm.material.subMaterials[i].maxSimultaneousLights = 6;
 
     //Healing flare effect
-    const healingParticles = new BABYLON.ParticleSystem("healingParticles", 1000, scene);
+    //NO PARTICLE SYSTEMS IN LOW SPEC MODE
+    /*const healingParticles = new BABYLON.ParticleSystem("healingParticles", 1000, scene);
     healingParticles.particleTexture = new BABYLON.Texture("/assets/healing_flare_2.jpg", scene);
     var tempPos = skeleton.bones[skeleton.getBoneIndexByName("main")].position;
-    healingParticles.emitter = new BABYLON.Vector3(tempPos.x, tempPos.y+1.2, tempPos.z);    //to be moved at every frame
+    healingParticles.emitter = new BABYLON.Vector3(tempPos.x, tempPos.y+1.2, tempPos.z);
     healingParticles.minEmitBox = new BABYLON.Vector3(-0.2, 0, -0.2);
     healingParticles.maxEmitBox = new BABYLON.Vector3(0.2, 0, 0.2);
     //healingParticles.color1 = new BABYLON.Color4(0.7, 0.8, 1.0, 1.0);
@@ -258,10 +256,10 @@ const createScene = async function () {
     healingParticles.minEmitPower = 0.25;
     healingParticles.maxEmitPower = 0.5;
     healingParticles.updateSpeed = 0.01;
-    healingParticles.gravity = new BABYLON.Vector3(0, -4.405, 0);
+    healingParticles.gravity = new BABYLON.Vector3(0, -4.405, 0);*/
 
-    //**SHADOWS CASTING**
-    const shadowGenerator1 = new BABYLON.ShadowGenerator(1024, light);
+    //**NO SHADOWS IN LOW SPEC MODE**
+    /*const shadowGenerator1 = new BABYLON.ShadowGenerator(1024, light);
     shadowGenerator1.addShadowCaster(model);
     shadowGenerator1.addShadowCaster(model2);
     shadowGenerator1.addShadowCaster(cathedral);
@@ -282,7 +280,7 @@ const createScene = async function () {
     const shadowGenerator3 = new BABYLON.ShadowGenerator(1024, moonlightLight);
     shadowGenerator3.addShadowCaster(zeldaChest);
     shadowGenerator3.addShadowCaster(model);
-    shadowGenerator3.usePoissonSampling = true;
+    shadowGenerator3.usePoissonSampling = true;*/
     
     //I HAD TO DISABLE BACKFACE CULLING FROM BLENDER (from some meshes, not all) BECAUSE OF THE MIRRORING OF THE MODELS EXPORTER (THE APP IS SLIGHTLY HEAVIER)
 
@@ -349,7 +347,7 @@ const createScene = async function () {
     //Chest opening sound (Dark Cloud sound)
     const chestOpeningSound = new BABYLON.Sound("chestOpeningSound", "sounds/chest_item.wav", scene, null, { loop: false, volume: 0.4 });
 
-    //**GUI/HUD (it is only partially responsive to a dynamic change of resolution, so if you change it, just reload the page)**
+    //**GUI/HUD (it is not responsive to a dynamic change of resolution, so if you change it, just reload the page)**
     const GUITexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("GUITexture", true);
     
     //Player bars container
@@ -618,7 +616,7 @@ const createScene = async function () {
         SKinitialTposeRot.push(temp);
     }
 
-    //Since the fingers are open by default, I added these lines to close them (and basically I'll never move them again). Same for sheath
+    //Since the fingers are open by default, I added these lines to close them (and basically I'll never move them again). Same for sheath and cape
     skeleton.bones[skeleton.getBoneIndexByName("fingers R")].rotation = new BABYLON.Vector3(0.0, 0.0, Math.PI/2.35);
     skeleton.bones[skeleton.getBoneIndexByName("fingers L")].rotation = new BABYLON.Vector3(0.0, 0.0, -Math.PI/6);
     skeleton2.bones[skeleton2.getBoneIndexByName("fingers R")].rotation = new BABYLON.Vector3(0.0, 0.0, Math.PI/2.35);
@@ -651,7 +649,7 @@ const createScene = async function () {
     const lightAtckStaminaCost = 50.0;
     const heavyAtckStaminaCost = 75.0;
     const dodgeStaminaCost = 50.0;
-    var healingNumber = 1;      //you have only one healing herb (but I put the number anyway in the case of future project rivisitation)
+    var healingNumber = 1;      //you have one healing herb
     const healingValue = 500;
 
     //**ANIMATIONS INITIALIZATIONS**
@@ -695,7 +693,7 @@ const createScene = async function () {
     
     chestMoonlight(chestSkeleton, moonlightSword, frameRate);
 
-    //(For GUI, initialization and grouping are together for brevity)
+    //(For GUI, initialization and grouping is together for brevity)
     const defeatGUIAnimationGroup = defeatTextBoxFadeIn(defeatContainer, defeatTextArea, defeatRestartButton, frameRate);
     const victoryGUIAnimationGroup = victoryTextBoxFadeInOut(victoryContainer, victoryTextArea, victorySubtextArea, frameRate);
 
@@ -822,7 +820,7 @@ const createScene = async function () {
                             currAnimationGroup.play(true);
 
 							mainBack(skeleton, frameRate);
-                            
+
 							mainAnimatable = scene.beginDirectAnimation(skeleton.bones[skeleton.getBoneIndexByName("main")], [skeleton.bones[skeleton.getBoneIndexByName("main")].animations[1]], 0, 11*frameRate/6, true);
                             mainAnimatable.speedRatio = 1.25;
 
@@ -841,7 +839,7 @@ const createScene = async function () {
                             currAnimationGroup.play(true);
 
 							mainLeft(skeleton, frameRate);
-                            
+
 							mainAnimatable = scene.beginDirectAnimation(skeleton.bones[skeleton.getBoneIndexByName("main")], [skeleton.bones[skeleton.getBoneIndexByName("main")].animations[3]], 0, 11*frameRate/6, true);
                             mainAnimatable.speedRatio = 1.25;
 
@@ -860,7 +858,7 @@ const createScene = async function () {
                             currAnimationGroup.play(true);
 
 							mainRight(skeleton, frameRate);
-                            
+
 							mainAnimatable = scene.beginDirectAnimation(skeleton.bones[skeleton.getBoneIndexByName("main")], [skeleton.bones[skeleton.getBoneIndexByName("main")].animations[2]], 0, 11*frameRate/6, true);
                             mainAnimatable.speedRatio = 1.25;
 
@@ -1289,13 +1287,13 @@ const createScene = async function () {
             //The number of healing herbs is already checked in the input key reading
             if(playerHealth + healingValue >= playerMaxHealth) playerHealth = playerMaxHealth;
             else playerHealth += healingValue;
-            //Healing counter change, same for health bar
+            //Healing counter change
             var tempWidth = (Math.round(playerHealth*500/playerMaxHealth)).toString(); //it must be an integer
             playerHealthBar.width = tempWidth + 'px';
             var tempText = healingNumber.toString();
             healingNumberArea.text = tempText + " / 1";
             //Healing flare effect start
-            healingParticles.start();
+            //healingParticles.start();     //NO PARTICLE SYSTEMS IN LOW SPEC MODE
         },
         true
     );
@@ -1310,7 +1308,7 @@ const createScene = async function () {
             animationIsPlaying = false;
             rFlag = false;
             //Healing flare effect stop
-            healingParticles.stop();
+            //healingParticles.stop();      //NO PARTICLE SYSTEMS IN LOW SPEC MODE
         }
     });
 
@@ -1495,13 +1493,17 @@ const createScene = async function () {
         arenaHitboxes.push(chestHitbox);
         zeldaChest.isVisible = true;
         moonlightSword.isVisible = true;
-        if(!moonlightSparkles.isStarted() & !playerHasOpenedChest) moonlightSparkles.start();
+        //NO PARTICLE SYSTEMS IN LOW SPEC MODE
+        //if(!moonlightSparkles.isStarted() & !playerHasOpenedChest) moonlightSparkles.start();
         victoryContainer.isVisible = true;
         victoryTextArea.isVisible = true;
         victorySubtextArea.isVisible = true;
         victoryGUIAnimationGroup.start();
         bossHealthBarArea.isVisible = false;
     });
+
+    //Player healing flare effect
+
 
     //**GUI EVENT LISTENERS**
     defeatRestartButton.onPointerClickObservable.add(function() {
@@ -1685,28 +1687,12 @@ const createScene = async function () {
     var bossDeathAnim = true;
     var victoryFlag = false;
     var playerHasOpenedChest = false;
-    var lowSpecRequestFlag = false;
 
     var stuckCount = 4*frameRate;   //when boss get stuck for too long (4 seconds), I update its location arbitrarily
     
     //I update boss rotation and position at every frame, depending on the player position
-    //I treat registerBeforeRender as if it was a while loop
 	scene.registerBeforeRender(function () {
-        //In case performance is too low (I assumed lower than 20 fps is poor performance), ask the user wether run low spec mode or not
-        if(frameRate<=20.0 && lowSpecCounter<=0) {
-            if(!lowSpecRequestFlag) {
-                if(confirm("The game is running too slow on your system. Do you want to run the low spec mode (disable shadows and particle systems)?")) {
-                    lowSpecRequestFlag = true;
-                    location.assign("index_low_spec.html");
-                } 
-                else {
-                    lowSpecRequestFlag = true;  //if user says no, don't ask anymore
-                }
-            }
-        }
-        else if(frameRate<=20.0 && lowSpecCounter>0) lowSpecCounter--;
-
-        //>> Essential part added not to let the player walk through the boss and through walls or columns
+        //Essential part added not to let the player walk through the boss and through walls
         if(wFlag) {
             if((playerFrontHitbox.intersectsMesh(bossHitbox, true) && !bossDeathFlag) || !playerCanMove(playerFrontHitbox, arenaHitboxes)) {
                 mainAnimatable.pause();
@@ -1750,7 +1736,7 @@ const createScene = async function () {
 
         if(!bossDeathFlag && !playerDeathFlag) {    //boss is alive
             bossLookAt.update();
-
+            
             var playerMainPos = skeleton.bones[skeleton.getBoneIndexByName("main")].position;
             var bossMainRot = skeleton2.bones[skeleton2.getBoneIndexByName("main")].rotation;
             var bossMainPos = skeleton2.bones[skeleton2.getBoneIndexByName("main")].position;
@@ -1773,7 +1759,7 @@ const createScene = async function () {
             }
         
             //Linking line between boss and player
-            if(linkLine != null) scene.removeMesh(linkLine);    //to not slow down the engine while drawing a line per frame
+            if(linkLine != null) scene.removeMesh(linkLine);    //to not slow down the engine while drawing a line per frame, I delete the previous one
             linkLine = BABYLON.MeshBuilder.CreateLines("linkLine", {colors: [new BABYLON.Color4(1.0, 1.0, 1.0, 1.0), new BABYLON.Color4(1.0, 1.0, 1.0, 1.0)], points: [bossMainPos, playerMainPos]}, scene);
             if(!pFlag) linkLine.isVisible = false;
             else linkLine.isVisible = true;
@@ -1822,7 +1808,7 @@ const createScene = async function () {
                         }
                     }
                 }
-                else if(dist <=2.5 && dist > 2.3) {  //here boss is close and can attack choosing randomly from his attacks animations (or pause for 3 seconds)
+                else if (dist <=2.5 && dist > 2.3) {  //here boss is close and can attack choosing randomly from his attacks animations (or pause for 3 seconds)
                     if (rng < 1/6) {
                         bossIdleFlag = true;
                         bossPauseDuration = 3*frameRate;
@@ -1946,8 +1932,9 @@ const createScene = async function () {
                 staminaBar.width = tempWidth + 'px';
             }
             //Healing flare emitter
-            tempPos = skeleton.bones[skeleton.getBoneIndexByName("main")].position;
-            healingParticles.emitter = new BABYLON.Vector3(tempPos.x, tempPos.y+1.2, tempPos.z);
+            //NO PARTICLE SYSTEMS IN LOW SPEC MODE
+            //tempPos = skeleton.bones[skeleton.getBoneIndexByName("main")].position;
+            //healingParticles.emitter = new BABYLON.Vector3(tempPos.x, tempPos.y+1.2, tempPos.z);
         }
 
         //player won, show the chest with the prize
@@ -1957,14 +1944,13 @@ const createScene = async function () {
                 moonlightLight.setEnabled(true);
                 moonlightLight2.setEnabled(true);
                 chestOpeningSound.play(0.5);
-                moonlightSparkles.stop();
+                //moonlightSparkles.stop();     //NO PARTICLE SYSTEMS IN LOW SPEC MODE
                 playerHasOpenedChest = true;
             }
         }
 
         if(chestOpeningSound.isPlaying && victoryMusic.isPlaying) victoryMusic.setVolume(0.1);
         else victoryMusic.setVolume(0.3);
-
 	});
 
     return scene;

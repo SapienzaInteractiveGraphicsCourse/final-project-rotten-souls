@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Rotten Souls</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico?v=1">
+
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+
+        <script src="/basic/babylon.js"></script>
+        <!--script src="../basic/babylonjs.loaders.min.js"></script-->
+        <script src="/basic/cdn.babylonjs.com_gui_babylon.gui.min.js"></script>
+        <script src="/basic/cdn.babylonjs.com_loaders_babylon.objFileLoader.js"></script>
+        <!--script src="../basic/cdn.babylonjs.com_loaders_babylon.stlFileLoader.js"></script-->
+    </head>
+
+    <body>
+        <canvas id="renderCanvas"></canvas>
+        <script src="animations/playerIdle.js"></script>
+        <script src="animations/mainBoneAnimations.js"></script>
+        <script src="animations/walkFwd.js"></script>
+        <script src="animations/walkBack.js"></script>
+        <script src="animations/walkRight.js"></script>
+        <script src="animations/walkLeft.js"></script>
+        <script src="animations/rotateRight.js"></script>
+        <script src="animations/rotateLeft.js"></script>
+        <script src="animations/lightAttack.js"></script>
+        <script src="animations/heavyAttack.js"></script>
+        <script src="animations/dodgeFwd.js"></script>
+        <script src="animations/dodgeBack.js"></script>
+        <script src="animations/dodgeRight.js"></script>
+        <script src="animations/dodgeLeft.js"></script>
+        <script src="animations/playerDeath.js"></script>
+        <script src="animations/bossIdle.js"></script>
+        <script src="animations/bossWalkFwd.js"></script>
+        <script src="animations/bossWalkBack.js"></script>
+        <script src="animations/bossLightAttack.js"></script>
+        <script src="animations/bossHeavyAttack.js"></script>
+        <script src="animations/bossDeath.js"></script>
+        <script src="animations/playerHealing.js"></script>
+        <script src="animations/chestAnimation.js"></script>
+        <script src="animations/GUIAnimations.js"></script>
+        <script src="assets/gameHitboxes.js"></script>
+	    <script src="game.js"></script>
+    </body>
+</html>
