@@ -1493,6 +1493,7 @@ const createScene = async function () {
         scene.removeMesh(model2);
         //Treasure chest appears
         arenaHitboxes.push(chestHitbox);
+        allHitboxes.push(chestHitbox);
         zeldaChest.isVisible = true;
         moonlightSword.isVisible = true;
         if(!moonlightSparkles.isStarted() & !playerHasOpenedChest) moonlightSparkles.start();

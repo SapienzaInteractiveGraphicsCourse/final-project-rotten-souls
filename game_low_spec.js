@@ -1491,6 +1491,7 @@ const createScene = async function () {
         scene.removeMesh(model2);
         //Treasure chest appears
         arenaHitboxes.push(chestHitbox);
+        allHitboxes.push(chestHitbox);
         zeldaChest.isVisible = true;
         moonlightSword.isVisible = true;
         //NO PARTICLE SYSTEMS IN LOW SPEC MODE

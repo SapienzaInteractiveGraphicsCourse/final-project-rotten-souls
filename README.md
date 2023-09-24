@@ -7,6 +7,8 @@ You can play the game at this [link](https://sapienzainteractivegraphicscourse.g
 
 You can also directly launch a low spec version of the game (only accessible when your performance is low) [here](https://sapienzainteractivegraphicscourse.github.io/final-project-rotten-souls/index_low_spec.html).
 
+Sometimes, if you reload the page through the browser, the sound of the game is muted, it is a Babylon.js thing. To reactivate the audio just click on the symbol in the the left upper corner (then you have to click again on the canvas to focus it and use the controls).
+
 ## Quick user manual
 
 Combat controls:
