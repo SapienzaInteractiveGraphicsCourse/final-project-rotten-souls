@@ -62,8 +62,8 @@ const createScene = async function () {
     //**GROUND AND SKYBOX**
     const groundMat = new BABYLON.StandardMaterial("groundMat");
     //groundMat.diffuseColor = new BABYLON.Color3(0.9, 0.9, 0.9);
-    groundMat.diffuseTexture = new BABYLON.Texture("/assets/Chapel_Arena_fin/m15_wall_white_01.png", scene);
-    groundMat.bumpTexture = new BABYLON.Texture("/assets/bricks_n_map.png", scene);
+    groundMat.diffuseTexture = new BABYLON.Texture("assets/Chapel_Arena_fin/m15_wall_white_01.png", scene);
+    groundMat.bumpTexture = new BABYLON.Texture("assets/bricks_n_map.png", scene);
     groundMat.diffuseTexture.uScale = 20.0;     //to make the texture replicate instead of stretching ("tiling")
     groundMat.diffuseTexture.vScale = 16.0;
     groundMat.bumpTexture.uScale = 20.0;
@@ -76,7 +76,7 @@ const createScene = async function () {
     const skybox = BABYLON.MeshBuilder.CreateBox("skybox", {size:200}, scene);
     const skyboxMaterial = new BABYLON.StandardMaterial("skyboxMaterial", scene);
     skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("/assets/Skybox/skybox", scene);   //it reads "textures" directory and then search for files with prefix "skybox" and suffix "_nx", "_ny", etc.
+    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("assets/Skybox/skybox", scene);   //it reads "textures" directory and then search for files with prefix "skybox" and suffix "_nx", "_ny", etc.
     skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
     skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
     skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -89,7 +89,7 @@ const createScene = async function () {
     var model;
     var skeleton;
     //I use asynchronous function with "await" to avoid the lost of reference to "model" and "skeleton" and to improve mesh loading
-    const result = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Darkwraith_fin2/", "c2390.babylon", scene);
+    const result = await BABYLON.SceneLoader.ImportMeshAsync("", "assets/Darkwraith_fin2/", "c2390.babylon", scene);
     model = result.meshes[0];
     skeleton = result.skeletons[0];
     model.receiveShadows = true;
@@ -112,7 +112,7 @@ const createScene = async function () {
     //Boss model (silver knight)
     var model2;
     var skeleton2;
-    const result2 = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Silver_Knight_fin2/", "c2410.babylon", scene);
+    const result2 = await BABYLON.SceneLoader.ImportMeshAsync("", "assets/Silver_Knight_fin2/", "c2410.babylon", scene);
     model2 = result2.meshes[0];
     skeleton2 = result2.skeletons[0];
     model2.receiveShadows = true;
@@ -129,7 +129,7 @@ const createScene = async function () {
 
     //Cathedral
     var cathedral;
-    const result3 = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Chapel_Arena_fin/", "chapel_arena.babylon", scene);
+    const result3 = await BABYLON.SceneLoader.ImportMeshAsync("", "assets/Chapel_Arena_fin/", "chapel_arena.babylon", scene);
     cathedral = result3.meshes[0];
     cathedral.position = new BABYLON.Vector3(0.0, 7.5, 0.0);
     cathedral.rotation = new BABYLON.Vector3(0.0, Math.PI, 0.0);
@@ -139,7 +139,7 @@ const createScene = async function () {
 
     //Chandeliers
     var chandelier;
-    const result4 = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Chandelier/", "chandelier.babylon", scene);
+    const result4 = await BABYLON.SceneLoader.ImportMeshAsync("", "assets/Chandelier/", "chandelier.babylon", scene);
     chandelier = result4.meshes[0];
     chandelier.position = new BABYLON.Vector3(-5.0, 11.0, 0.0);
     //chandelier.receiveShadows = true;
@@ -152,7 +152,7 @@ const createScene = async function () {
     //Victory chest
     var zeldaChest;
     var chestSkeleton;
-    const result5 = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Zelda_Chest/", "Zelda_chest.babylon", scene);
+    const result5 = await BABYLON.SceneLoader.ImportMeshAsync("", "assets/Zelda_Chest/", "Zelda_chest.babylon", scene);
     zeldaChest = result5.meshes[0];
     chestSkeleton = result5.skeletons[0];
     chestSkeleton.bones[chestSkeleton.getBoneIndexByName("base")].scaling.x *= 1.4;
@@ -170,7 +170,7 @@ const createScene = async function () {
 
     //Moonlight sword (victory prize)
     var moonlightSword;
-    const result6 = await BABYLON.SceneLoader.ImportMeshAsync("", "/assets/Moonlight_Sword/", "moonlight_sword.babylon", scene);
+    const result6 = await BABYLON.SceneLoader.ImportMeshAsync("", "assets/Moonlight_Sword/", "moonlight_sword.babylon", scene);
     moonlightSword = result6.meshes[0];
     moonlightSword.position = new BABYLON.Vector3(-10.0, -1.0, 0.0);
     moonlightSword.rotation = new BABYLON.Vector3(0.0, Math.PI/2, 0.0);
@@ -200,7 +200,7 @@ const createScene = async function () {
 
     //Small particle system effect for the chest and moonlight sword
     const moonlightSparkles = new BABYLON.ParticleSystem("moonlightSparkles", 1000, scene);
-    moonlightSparkles.particleTexture = new BABYLON.Texture("/assets/flare_moonlight_2.jpg", scene);
+    moonlightSparkles.particleTexture = new BABYLON.Texture("assets/flare_moonlight_2.jpg", scene);
     moonlightSparkles.emitter = new BABYLON.Vector3(-10.0, 0.0, 0.0);
     moonlightSparkles.minEmitBox = new BABYLON.Vector3(-0.8, 0, -0.8);
     moonlightSparkles.maxEmitBox = new BABYLON.Vector3(0.8, 0, 0.8);
@@ -240,7 +240,7 @@ const createScene = async function () {
 
     //Healing flare effect
     const healingParticles = new BABYLON.ParticleSystem("healingParticles", 1000, scene);
-    healingParticles.particleTexture = new BABYLON.Texture("/assets/healing_flare_2.jpg", scene);
+    healingParticles.particleTexture = new BABYLON.Texture("assets/healing_flare_2.jpg", scene);
     var tempPos = skeleton.bones[skeleton.getBoneIndexByName("main")].position;
     healingParticles.emitter = new BABYLON.Vector3(tempPos.x, tempPos.y+1.2, tempPos.z);    //to be moved at every frame
     healingParticles.minEmitBox = new BABYLON.Vector3(-0.2, 0, -0.2);
