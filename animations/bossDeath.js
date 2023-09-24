@@ -486,6 +486,26 @@ function bossDeath(skeleton, frameRate, initialPos, initialRot) {
     //capeRot.setEasingFunction(bezierEase);
     cape.animations.push(capeRot);
 }
+//Cool disappearing animation when boss dies
+function bossDeathVanishing(mesh, frameRate) {
+    const bossVanishing = new BABYLON.Animation("bossVanishing", "visibility", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+    const keyFrames = [];
+    keyFrames.push({
+        frame: 0,
+        value: 1.0
+    });
+    keyFrames.push({
+        frame: 3 * frameRate,       //180 frame
+        value: 1.0
+    });
+    keyFrames.push({
+        frame: 5 * frameRate,       //300 frame
+        value: 0.0
+    });
+
+    bossVanishing.setKeys(keyFrames);
+    mesh.animations.push(bossVanishing);
+}
 function groupBossDeath(skeleton, model) {
     const bossDeathGroup = new BABYLON.AnimationGroup("bossDeathGroup");
     //bossDeathGroup.addTargetedAnimation(skeleton.bones[skeleton.getBoneIndexByName("main")].animations[0], skeleton.bones[skeleton.getBoneIndexByName("main")]);
@@ -511,30 +531,6 @@ function groupBossDeath(skeleton, model) {
 
     return bossDeathGroup;
 }
-
-//Cool disappearing animation when boss dies
-function bossDeathVanishing(mesh, frameRate) {
-    const bossVanishing = new BABYLON.Animation("bossVanishing", "visibility", frameRate, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
-    const keyFrames = [];
-    keyFrames.push({
-        frame: 0,
-        value: 1.0
-    });
-    keyFrames.push({
-        frame: 3 * frameRate,       //180 frame (cape animation is longer than the ones of the other bones)
-        value: 1.0
-    });
-    keyFrames.push({
-        frame: 5 * frameRate,       //300 frame
-        value: 0.0
-    });
-
-    bossVanishing.setKeys(keyFrames);
-    mesh.animations.push(bossVanishing);
-
-    return bossVanishing;
-}
-//Keyframes: 25=5/12fr; 35=7/12fr; 45=3/4fr; 55=11/12; 80=4/3fr; 110=11/6fr
 
 //****REMINDER FOR BONES NAMES****
 //main  chest  neck  head  

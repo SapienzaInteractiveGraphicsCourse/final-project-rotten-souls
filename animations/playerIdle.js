@@ -266,7 +266,7 @@ function playerIdleAnimation(skeleton, frameRate, initialPos, initialRot) {
     const palmR = skeleton.bones[skeleton.getBoneIndexByName("palm R")];
     currRot = initialRot[skeleton.getBoneIndexByName("palm R")];
 
-    const palmRRot = new BABYLON.Animation("idleRot", "rotation", frameRate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CONSTANT);
+    const palmRRot = new BABYLON.Animation("idleRot", "rotation", frameRate, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
     const keyFrames16 = [];
     keyFrames16.push({
         frame: 0,
@@ -366,7 +366,6 @@ function playerIdleAnimation(skeleton, frameRate, initialPos, initialRot) {
     footR.animations.push(footRRot);
 }
 function groupIdle(skeleton) {
-    //C'è UNA MOLESTA PRIMA ANIMAZIONE (in indice 0) NELL'ARRAY DELLE ANIMAZIONI DELLE BONES ("anim" sulla proprietà "_matrix") DA ESPORTAZIONE DO BLENDER (RIMOSSA A MANO)
     const idleGroup = new BABYLON.AnimationGroup("idleGroup");
     idleGroup.addTargetedAnimation(skeleton.bones[skeleton.getBoneIndexByName("chest")].animations[0], skeleton.bones[skeleton.getBoneIndexByName("chest")]);
     idleGroup.addTargetedAnimation(skeleton.bones[skeleton.getBoneIndexByName("chest")].animations[1], skeleton.bones[skeleton.getBoneIndexByName("chest")]);

@@ -18,7 +18,7 @@ function dodgeRight(skeleton, frameRate, initialPos, initialRot) {
     });
     keyFrames1.push({
         frame: 5 * frameRate/12,     //25 frame
-        value: new BABYLON.Vector3(currPos.x+0.0, currPos.y+0.065, currPos.z+0.0)
+        value: new BABYLON.Vector3(currPos.x+0.0, currPos.y+0.085, currPos.z+0.0)
     });
     keyFrames1.push({
         frame: 5 * frameRate/6,     //50 frame

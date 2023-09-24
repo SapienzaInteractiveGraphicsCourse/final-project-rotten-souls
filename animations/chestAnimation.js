@@ -38,7 +38,7 @@ function chestMoonlight(chestSkeleton, sword, frameRate) {
     });
     keyFrames2.push({
         frame: 4 * frameRate,
-        value: new BABYLON.Vector3(currPos.x, currPos.y+1.8, currPos.z+0.0)
+        value: new BABYLON.Vector3(currPos.x, currPos.y+2.0, currPos.z+0.0)
     });
 
     swordPos.setKeys(keyFrames2);
